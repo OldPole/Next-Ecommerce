@@ -1,6 +1,7 @@
-import { ProductService } from '../services/product.service';
-import { ProductCard } from '../components/ProductCard';
+import { ProductList } from '../components/ProductList';
 import { ProductPagination } from '../components/ProductPagination';
+import { ProductService } from '../services/product.service';
+import { AppBreadcrumbs } from '@/core/ui/appBreadcrumbs';
 
 interface Props {
   page: number;
@@ -14,13 +15,9 @@ export const ProductsView = async ({ page }: Props) => {
   const totalPages = Math.ceil(total / limit);
 
   return (
-    <section className="py-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </div>
-
+    <section>
+      <AppBreadcrumbs items={['Products']} />
+      <ProductList products={products} />
       {totalPages > 1 && <ProductPagination currentPage={page} totalPages={totalPages} />}
     </section>
   );

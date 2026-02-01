@@ -1,25 +1,15 @@
-import { ProductCardSkeleton } from '@/features/Products/components/ProductCardSkeleton';
+import { ProductsSkeleton } from '@/features/Products/components/ProductSkeleton';
 import { ProductsView } from '@/features/Products/views/ProductsView';
 
 import { Suspense } from 'react';
 
-// как реализовать ssr
-
 const ProductsPage = async ({ searchParams }: { searchParams: Promise<{ page?: string }> }) => {
-  const params = await searchParams; // что это
+  const params = await searchParams;
   const currentPage = Number(params.page) || 1;
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold mt-6">Каталог товаров</h1>
-      <Suspense // компонент loading и error
-        fallback={
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <ProductCardSkeleton key={i} />
-            ))}
-          </div>
-        }>
+      <Suspense fallback={<ProductsSkeleton />}>
         <ProductsView page={currentPage} />
       </Suspense>
     </div>
@@ -27,3 +17,5 @@ const ProductsPage = async ({ searchParams }: { searchParams: Promise<{ page?: s
 };
 
 export default ProductsPage;
+
+// export const dynamic = 'force-dynamic';

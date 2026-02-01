@@ -53,7 +53,7 @@ export const Header = () => {
               variant="outline"
               size="sm"
               className="rounded-full shadow-sm hover:bg-slate-100 transition-all active:scale-95">
-              <Link href="/login">Войти</Link>
+              <Link href="/login">Login</Link>
             </Button>
           )}
         </div>

@@ -1,4 +1,4 @@
-'use client'; // почему не сделать через гидратацию
+'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
@@ -35,7 +35,7 @@ export const ProductPagination = ({ currentPage, totalPages }: Props) => {
   };
 
   return (
-    <Pagination className="mt-10">
+    <Pagination className="m-10">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
