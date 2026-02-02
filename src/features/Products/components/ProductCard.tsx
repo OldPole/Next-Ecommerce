@@ -14,7 +14,6 @@ export const ProductCard = ({ id, title, price, images }: Product) => {
             alt={title}
             fill
             className="object-cover transition-transform group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>
 

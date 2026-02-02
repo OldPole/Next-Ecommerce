@@ -1,21 +1,30 @@
-import { ProductsSkeleton } from '@/features/Products/components/ProductSkeleton';
-import { ProductsView } from '@/features/Products/views/ProductsView';
-
 import { Suspense } from 'react';
+import { headers } from 'next/headers';
+import { ProductsView } from '@/features/Products/views/ProductsView';
+import { ProductsSkeleton } from '@/features/Products/components/ProductSkeleton';
+import { ProductToolbar } from '@/features/Products/components/ProductToolbar';
+import { ProductService } from '@/features/Products/services/product.service';
+import { AppBreadcrumbs } from '@/core/ui/appBreadcrumbs';
 
-const ProductsPage = async ({ searchParams }: { searchParams: Promise<{ page?: string }> }) => {
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
+  await headers();
   const params = await searchParams;
-  const currentPage = Number(params.page) || 1;
+
+  const categories = await ProductService.getCategories();
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto flex flex-col gap-6">
+      <AppBreadcrumbs items={['Products']} />
+
+      <ProductToolbar categories={categories} />
+
       <Suspense fallback={<ProductsSkeleton />}>
-        <ProductsView page={currentPage} />
+        <ProductsView searchParams={params} />
       </Suspense>
     </div>
   );
-};
-
-export default ProductsPage;
-
-// export const dynamic = 'force-dynamic';
+}
