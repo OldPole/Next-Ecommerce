@@ -5,7 +5,7 @@ import { Footer } from '@/core/layouts/Footer';
 
 export const metadata: Metadata = {
   title: 'Next Ecommerce',
-  description: 'Лучшие товары на базе Next.js 16 и DummyJSON API',
+  description: 'Best products with Next.js 16 and DummyJSON API',
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',

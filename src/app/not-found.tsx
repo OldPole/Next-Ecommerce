@@ -11,16 +11,16 @@ export default function NotFound() {
         </span>
 
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-900">
-          Ничего не найдено
+          Nothing was found
         </h1>
 
         <p className="text-xl sm:text-2xl text-slate-600">
-          К сожалению, данная страница отсутствует в нашем интернет-магазине
+          Unfortunately, this page is not available in our online store
         </p>
 
         <div className="pt-6">
           <Button asChild variant="default" size="lg">
-            <Link href="/">Вернуться на главную</Link>
+            <Link href="/">Go back to the main page</Link>
           </Button>
         </div>
       </div>

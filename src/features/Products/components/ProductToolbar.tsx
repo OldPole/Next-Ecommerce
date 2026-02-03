@@ -8,7 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useDebounce } from '../hooks/useDebounce';
 import { X } from 'lucide-react';
 
-export const ProductToolbar = ({ categories }: { categories: string[] }) => {
+interface Props {
+  categories: string[];
+}
+
+export const ProductToolbar = ({ categories }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 

@@ -1,4 +1,4 @@
-import { ProductResponse, ProductFilters } from '../types/product.types';
+import { ProductResponse, ProductFilters, Product } from '../types/product.types';
 
 const BASE_URL = 'https://dummyjson.com';
 
@@ -25,6 +25,24 @@ export const ProductService = {
 
   async getCategories(): Promise<string[]> {
     const res = await fetch(`${BASE_URL}/products/category-list`);
+    if (!res.ok) throw new Error('Categories not found');
+    return res.json();
+  },
+
+  async getAllIds(): Promise<number[]> {
+    const res = await fetch(`${BASE_URL}/products`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error('Products not found');
+    const data = await res.json();
+    return data.products.map((product: { id: number }) => product.id);
+  },
+
+  async getProductById(id: string): Promise<Product> {
+    const res = await fetch(`${BASE_URL}/products/${id}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) throw new Error(`Product ${id} not found`);
     return res.json();
   },
 };
