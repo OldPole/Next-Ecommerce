@@ -7,14 +7,8 @@ export async function generateStaticParams() {
   return ids.map((id) => ({ id: String(id) }));
 }
 
-export default async function ProductPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ image?: string }>;
-}) {
-  const [{ id }] = await Promise.all([params, searchParams]);
+export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
 
   const product = await ProductService.getProductById(id).catch(() => null);
 

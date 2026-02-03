@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { headers } from 'next/headers';
 import { ProductsView } from '@/features/Products/views/ProductsView';
 import { ProductsSkeleton } from '@/features/Products/components/ProductSkeleton';
 import { ProductToolbar } from '@/features/Products/components/ProductToolbar';
@@ -11,7 +10,6 @@ export default async function ProductsPage({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  await headers();
   const params = await searchParams;
 
   const categories = await ProductService.getCategories();
@@ -20,9 +18,8 @@ export default async function ProductsPage({
     <div className="container mx-auto flex flex-col gap-6">
       <AppBreadcrumbs items={['Products']} />
 
-      <ProductToolbar categories={categories} />
-
       <Suspense fallback={<ProductsSkeleton />}>
+        <ProductToolbar categories={categories} />
         <ProductsView searchParams={params} />
       </Suspense>
     </div>
