@@ -1,11 +1,10 @@
-import { ProductService } from '@/features/Products/services/product.service';
+import { getProducts } from '@/core/api/product.api';
 import { ProductCard } from '@/features/Products/components/ProductCard';
-
 import { HeroSlider } from '../components/HeroSlider';
 import { FEATURES } from '../constants/home.constants';
 
 export const HomeView = async () => {
-  const { products } = await ProductService.getProducts({
+  const { products } = await getProducts({
     limit: 5,
     category: 'mens-shirts',
   });

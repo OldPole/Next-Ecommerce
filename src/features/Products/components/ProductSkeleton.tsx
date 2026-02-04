@@ -1,6 +1,5 @@
 import { Skeleton } from '@/core/ui/skeleton';
 
-// add toolbar skeleton
 export const ProductsSkeleton = () => {
   return (
     <div className="space-y-6">

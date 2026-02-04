@@ -28,6 +28,7 @@ export interface ProductResponse {
 }
 
 export interface ProductFilters {
+  page?: string;
   limit?: number;
   skip?: number;
   search?: string;
@@ -35,3 +36,5 @@ export interface ProductFilters {
   sortBy?: 'price';
   order?: 'asc' | 'desc';
 }
+
+export type ProductSearchParams = Partial<Record<keyof ProductFilters, string>>;

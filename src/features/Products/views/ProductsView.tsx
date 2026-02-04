@@ -1,39 +1,22 @@
-import { ProductService } from '../services/product.service';
+import { Suspense } from 'react';
+import { getCategories } from '@/core/api/product.api';
+import { AppBreadcrumbs } from '@/core/ui/appBreadcrumbs';
+import { ProductToolbar } from '../components/ProductToolbar';
 import { ProductList } from '../components/ProductList';
-import { ProductPagination } from '../components/ProductPagination';
+import { ProductsSkeleton } from '../components/ProductSkeleton';
+import { ProductSearchParams } from '@/core/api/api.types';
 
-export const ProductsView = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) => {
-  const page = Number(searchParams.page) || 1;
-  const limit = 16;
-
-  const data = await ProductService.getProducts({
-    limit,
-    skip: (page - 1) * limit,
-    search: searchParams.search,
-    category: searchParams.category,
-    sortBy: searchParams.sortBy === 'price' ? 'price' : undefined,
-    order: (searchParams.order as 'asc' | 'desc') || undefined,
-  });
-
-  const totalPages = Math.ceil(data.total / limit);
+export const ProductsView = async ({ searchParams }: { searchParams: ProductSearchParams }) => {
+  const categories = await getCategories();
 
   return (
-    <div className="flex flex-col gap-10">
-      {data.products.length !== 0 ? (
-        <ProductList products={data.products} />
-      ) : (
-        <div className="text-center py-24 text-slate-500 text-xl">No products found</div>
-      )}
+    <div className="container mx-auto flex flex-col gap-6 p-4">
+      <AppBreadcrumbs items={['Products']} />
+      <ProductToolbar categories={categories} />
 
-      {totalPages > 1 && (
-        <div className="flex justify-center pb-12">
-          <ProductPagination currentPage={page} totalPages={totalPages} />
-        </div>
-      )}
+      <Suspense key={JSON.stringify(searchParams)} fallback={<ProductsSkeleton />}>
+        <ProductList searchParams={searchParams} />
+      </Suspense>
     </div>
   );
 };

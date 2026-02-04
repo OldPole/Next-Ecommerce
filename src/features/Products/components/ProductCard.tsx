@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Card, CardContent, CardFooter } from '@/core/ui/card';
-import { Product } from '../types/product.types';
+import { Product } from '@/core/api/api.types';
 
 export const ProductCard = ({ id, title, price, images }: Product) => {
   return (

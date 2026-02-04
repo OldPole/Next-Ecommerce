@@ -1,15 +1,19 @@
-import { Product } from '../types/product.types';
 import { Truck, ShieldCheck, Star } from 'lucide-react';
+import { notFound } from 'next/navigation';
 import { Button } from '@/core/ui/button';
 import { ProductGallery } from '../components/ProductGallery';
 
-interface Props {
-  product: Product;
-}
+import { getProductById } from '@/core/api/product.api';
 
-export const ProductDetailView = ({ product }: Props) => {
+export const ProductDetailView = async ({ id }: { id: string }) => {
+  const product = await getProductById(id, { next: { revalidate: 3600 } }).catch(() => null);
+
+  if (!product) {
+    notFound();
+  }
+
   return (
-    <div className="flex flex-col gap-16">
+    <div className="container mx-auto flex flex-col gap-16 py-10 px-4">
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <ProductGallery images={product.images} title={product.title} />
 
