@@ -6,8 +6,8 @@ import { Product } from '../types/product.types';
 
 export const ProductCard = ({ id, title, price, images }: Product) => {
   return (
-    <Link href={`/products/${id}`} className="group">
-      <Card className="overflow-hidden border-none transition-all hover:ring-1 hover:ring-slate-200 p-0 shadow-none">
+    <Link href={`/products/${id}`} className="group block w-full max-w-87">
+      <Card className="overflow-hidden border-none transition-all hover:ring-1 hover:ring-slate-200 p-0 shadow-xs">
         <div className="relative aspect-square overflow-hidden bg-slate-100">
           <Image
             src={images[0]}

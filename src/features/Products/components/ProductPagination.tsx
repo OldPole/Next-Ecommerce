@@ -35,7 +35,7 @@ export const ProductPagination = ({ currentPage, totalPages }: Props) => {
   };
 
   return (
-    <Pagination className="m-10">
+    <Pagination className="mb-10">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

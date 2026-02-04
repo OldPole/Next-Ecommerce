@@ -2,6 +2,8 @@ import { ProductResponse, ProductFilters, Product } from '../types/product.types
 
 const BASE_URL = 'https://dummyjson.com';
 
+// take out logic to general
+
 export const ProductService = {
   async getProducts(params: ProductFilters): Promise<ProductResponse> {
     const { limit = 16, skip = 0, search, category, sortBy, order } = params;
@@ -46,3 +48,37 @@ export const ProductService = {
     return res.json();
   },
 };
+
+// import { createApi } from '@reduxjs/toolkit/query/react';
+// import { baseQuery } from './config';
+
+// export const productsApi = createApi({
+//   reducerPath: 'productsApi',
+//   baseQuery: baseQuery,
+//   endpoints: builder => ({
+//     getCategories: builder.query({
+//       query: () => 'products/category-list',
+//     }),
+//     getProductById: builder.query({
+//       query: id => `products/${id}`,
+//     }),
+//     getProducts: builder.query({
+//       query: ({ search, category, sortBy, order, limit = 9, skip = 0 }) => {
+//         let queryStr = `limit=${limit}&skip=${skip}`;
+
+//         if (sortBy) queryStr += `&sortBy=${sortBy}&order=${order || 'asc'}`;
+
+//         if (search) return `products/search?q=${search}&${queryStr}`;
+//         if (category) return `products/category/${category}?${queryStr}`;
+
+//         return `products?${queryStr}`;
+//       },
+//     }),
+//   }),
+// });
+
+// export const {
+//   useGetProductsQuery,
+//   useGetCategoriesQuery,
+//   useGetProductByIdQuery,
+// } = productsApi;
