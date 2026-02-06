@@ -1,4 +1,4 @@
-import { Product } from '@/core/api/api.types';
+import { Product } from '@/core/api/product.types';
 
 export interface CartItem extends Product {
   quantity: number;
@@ -12,6 +12,7 @@ export type CartActions = {
   addItem: (product: Product) => void;
   updateQuantity: (id: number, delta: number) => void;
   removeItem: (id: number) => void;
+  clearCart: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
 };

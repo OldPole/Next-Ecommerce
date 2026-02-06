@@ -3,7 +3,7 @@
 import { Minus, Plus, ShoppingCart } from 'lucide-react';
 import { Button } from '@/core/ui/button';
 import { useCartStore } from '@/core/providers/cart-store-provider';
-import { Product } from '@/core/api/api.types';
+import { Product } from '@/core/api/product.types';
 
 export const AddToCartSection = ({ product }: { product: Product }) => {
   const items = useCartStore((store) => store.items);

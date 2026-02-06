@@ -8,7 +8,7 @@ const supportLinks = [
 ];
 
 const shopLinks = [
-  { text: 'My Account', href: '/login' },
+  { text: 'My Account', href: '/account' },
   { text: 'Products', href: '/products' },
   { text: 'Cart', href: '/cart' },
 ];

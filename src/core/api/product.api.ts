@@ -1,4 +1,4 @@
-import { Product, ProductFilters, ProductResponse } from '@/core/api/api.types';
+import { Product, ProductFilters, ProductResponse } from '@/core/api/product.types';
 import { BASE_URL } from './api.constants';
 
 export const getProducts = async (

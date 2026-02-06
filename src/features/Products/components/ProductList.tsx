@@ -1,7 +1,7 @@
 import { getProducts } from '@/core/api/product.api';
 import { ProductCard } from './ProductCard';
 import { ProductPagination } from './ProductPagination';
-import { ProductSearchParams } from '@/core/api/api.types';
+import { ProductSearchParams } from '@/core/api/product.types';
 
 export const ProductList = async ({ searchParams }: { searchParams: ProductSearchParams }) => {
   const page = Number(searchParams.page) || 1;

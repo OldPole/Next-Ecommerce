@@ -1,8 +1,10 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { Card, CardContent, CardFooter } from '@/core/ui/card';
-import { Product } from '@/core/api/api.types';
+import { Product } from '@/core/api/product.types';
 
 export const ProductCard = ({ id, title, price, images }: Product) => {
   return (
@@ -13,7 +15,9 @@ export const ProductCard = ({ id, title, price, images }: Product) => {
             src={images[0]}
             alt={title}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 16vw"
             className="object-cover transition-transform group-hover:scale-105"
+            priority
           />
         </div>
 

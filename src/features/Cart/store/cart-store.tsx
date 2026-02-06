@@ -1,22 +1,8 @@
 import { createStore } from 'zustand/vanilla';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import Cookies from 'js-cookie';
-import { StateStorage } from 'zustand/middleware';
-import { CartState, CartStore } from '../types/cart-store.types';
+import { CartStore } from '../types/cart-store.types';
 
-const cookieStorage: StateStorage = {
-  getItem: (name: string): string | null => {
-    return Cookies.get(name) ?? null;
-  },
-  setItem: (name: string, value: string): void => {
-    Cookies.set(name, value, { expires: 7 });
-  },
-  removeItem: (name: string): void => {
-    Cookies.remove(name);
-  },
-};
-
-export const createCartStore = (initState: CartState = { items: [] }) => {
+export const createCartStore = (initState = { items: [] }) => {
   return createStore<CartStore>()(
     persist(
       (set, get) => ({
@@ -43,13 +29,14 @@ export const createCartStore = (initState: CartState = { items: [] }) => {
               .filter((item) => item.quantity > 0),
           }),
         removeItem: (id) => set({ items: get().items.filter((item) => item.id !== id) }),
+        clearCart: () => set({ items: [] }),
         getTotalPrice: () =>
           get().items.reduce((total, item) => total + item.price * item.quantity, 0),
         getTotalItems: () => get().items.reduce((total, item) => total + item.quantity, 0),
       }),
       {
         name: 'cart-storage',
-        storage: createJSONStorage(() => cookieStorage),
+        storage: createJSONStorage(() => localStorage),
       },
     ),
   );

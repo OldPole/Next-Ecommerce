@@ -4,7 +4,7 @@ import { AppBreadcrumbs } from '@/core/ui/appBreadcrumbs';
 import { ProductToolbar } from '../components/ProductToolbar';
 import { ProductList } from '../components/ProductList';
 import { ProductsSkeleton } from '../components/ProductSkeleton';
-import { ProductSearchParams } from '@/core/api/api.types';
+import { ProductSearchParams } from '@/core/api/product.types';
 
 export const ProductsView = async ({ searchParams }: { searchParams: ProductSearchParams }) => {
   const categories = await getCategories();

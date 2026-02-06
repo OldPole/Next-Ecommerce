@@ -35,7 +35,13 @@ export const ProductGallery = ({ images, title }: Props) => {
                 ? 'border-black scale-95'
                 : 'border-transparent opacity-60 hover:opacity-100'
             }`}>
-            <Image src={img} alt={`${title} view ${index}`} fill className="object-cover" />
+            <Image
+              src={img}
+              alt={`${title} view ${index}`}
+              fill
+              sizes="88px"
+              className="object-cover"
+            />
           </Button>
         ))}
       </div>
