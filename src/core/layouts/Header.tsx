@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ShoppingCart, User, Store } from 'lucide-react';
 import { Button } from '@/core/ui/button';
-import { Badge } from '@/core/ui/badge';
 
 export const Header = () => {
   const isAuth = false;
@@ -36,9 +35,6 @@ export const Header = () => {
             href="/cart"
             className="relative p-2 hover:bg-slate-100 rounded-full transition-all active:scale-90">
             <ShoppingCart className="w-5 h-5" />
-            <Badge className="absolute top-0 right-0 h-5 w-5 flex items-center justify-center p-0 text-[10px] pointer-events-none">
-              0
-            </Badge>
           </Link>
 
           {isAuth ? (

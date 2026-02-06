@@ -10,7 +10,7 @@ export const ProductsView = async ({ searchParams }: { searchParams: ProductSear
   const categories = await getCategories();
 
   return (
-    <div className="container mx-auto flex flex-col gap-6 p-4">
+    <div className="container mx-auto flex flex-col gap-6">
       <AppBreadcrumbs items={['Products']} />
       <ProductToolbar categories={categories} />
 

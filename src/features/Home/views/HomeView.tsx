@@ -4,10 +4,13 @@ import { HeroSlider } from '../components/HeroSlider';
 import { FEATURES } from '../constants/home.constants';
 
 export const HomeView = async () => {
-  const { products } = await getProducts({
-    limit: 5,
-    category: 'mens-shirts',
-  });
+  const { products } = await getProducts(
+    {
+      limit: 5,
+      category: 'mens-shirts',
+    },
+    { next: { revalidate: 3600 } },
+  );
 
   return (
     <div className="flex flex-col gap-16 p-20">

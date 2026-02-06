@@ -1,9 +1,9 @@
 import { Truck, ShieldCheck, Star } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import { Button } from '@/core/ui/button';
 import { ProductGallery } from '../components/ProductGallery';
 
 import { getProductById } from '@/core/api/product.api';
+import { AddToCartSection } from '../components/AddToCartSection';
 
 export const ProductDetailView = async ({ id }: { id: string }) => {
   const product = await getProductById(id, { next: { revalidate: 3600 } }).catch(() => null);
@@ -63,9 +63,7 @@ export const ProductDetailView = async ({ id }: { id: string }) => {
             </div>
           </div>
 
-          <Button className="w-full cursor-pointer py-8 text-xl font-bold rounded-2xl bg-black text-white hover:bg-slate-800 transition-all">
-            Add to cart
-          </Button>
+          <AddToCartSection product={product} />
         </div>
       </section>
 
