@@ -8,7 +8,7 @@ export const login = async (credentials: AuthCredentials): Promise<AuthResponse>
     body: JSON.stringify(credentials),
   });
 
-  if (!res.ok) throw new Error('Login failed');
+  if (!res.ok) throw new Error('Incorrect username or password. Please try again.');
 
   return res.json();
 };

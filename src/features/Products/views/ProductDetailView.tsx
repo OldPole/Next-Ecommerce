@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { ProductGallery } from '../components/ProductGallery';
 
 import { getProductById } from '@/core/api/product.api';
-import { AddToCartSection } from '../components/AddToCartSection';
+import { AddToCartSection } from '../components/AddToCart';
 import { AuthCheckContainer } from '../components/AuthCheckContainer';
 
 export const ProductDetailView = async ({ id }: { id: string }) => {

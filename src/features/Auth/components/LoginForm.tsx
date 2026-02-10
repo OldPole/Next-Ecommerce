@@ -14,16 +14,6 @@ interface LoginFormProps {
   loginError: string;
 }
 
-const getFriendlyErrorMessage = (error: string) => {
-  if (error.toLowerCase().includes('invalid credentials')) {
-    return 'Incorrect username or password. Please try again.';
-  }
-  if (error.toLowerCase().includes('not found')) {
-    return 'User does not exist.';
-  }
-  return error;
-};
-
 // username: 'emilys',
 // password: 'emilyspass',
 
@@ -82,9 +72,7 @@ export const LoginForm = ({ onSubmit, isLoading, loginError }: LoginFormProps) =
 
           {loginError && (
             <div className="bg-red-50  p-4 rounded-xl">
-              <p className="text-red-600 text-xs font-black uppercase">
-                {getFriendlyErrorMessage(loginError)}
-              </p>
+              <p className="text-red-600 text-xs font-black uppercase">{loginError}</p>
             </div>
           )}
 
