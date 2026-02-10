@@ -12,17 +12,7 @@ export const AddToCartSection = ({ product }: { product: Product }) => {
 
   const cartItem = items.find((item) => item.id === product.id);
 
-  if (!cartItem) {
-    return (
-      <Button
-        onClick={() => addItem(product)}
-        className="w-full py-8 text-xl font-bold rounded-2xl bg-black text-white hover:bg-slate-800 transition-all cursor-pointer">
-        <ShoppingCart className="mr-2 h-6 w-6" /> Add to cart
-      </Button>
-    );
-  }
-
-  return (
+  return cartItem ? (
     <div className="flex items-center gap-4 bg-slate-100 rounded-2xl p-1.5 border-2 border-slate-200">
       <Button
         variant="ghost"
@@ -40,5 +30,11 @@ export const AddToCartSection = ({ product }: { product: Product }) => {
         <Plus className="h-6 w-6" />
       </Button>
     </div>
+  ) : (
+    <Button
+      onClick={() => addItem(product)}
+      className="w-full py-8 text-xl font-bold rounded-2xl bg-black text-white hover:bg-slate-800 transition-all cursor-pointer">
+      <ShoppingCart className="mr-2 h-6 w-6" /> Add to cart
+    </Button>
   );
 };

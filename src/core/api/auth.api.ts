@@ -8,10 +8,7 @@ export const login = async (credentials: AuthCredentials): Promise<AuthResponse>
     body: JSON.stringify(credentials),
   });
 
-  if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.message || 'Login failed');
-  }
+  if (!res.ok) throw new Error('Login failed');
 
   return res.json();
 };

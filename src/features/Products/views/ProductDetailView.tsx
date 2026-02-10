@@ -4,6 +4,7 @@ import { ProductGallery } from '../components/ProductGallery';
 
 import { getProductById } from '@/core/api/product.api';
 import { AddToCartSection } from '../components/AddToCartSection';
+import { AuthCheckContainer } from '../components/AuthCheckContainer';
 
 export const ProductDetailView = async ({ id }: { id: string }) => {
   const product = await getProductById(id, { next: { revalidate: 3600 } }).catch(() => null);
@@ -62,8 +63,9 @@ export const ProductDetailView = async ({ id }: { id: string }) => {
               </div>
             </div>
           </div>
-
-          <AddToCartSection product={product} />
+          <AuthCheckContainer>
+            <AddToCartSection product={product} />
+          </AuthCheckContainer>
         </div>
       </section>
 
